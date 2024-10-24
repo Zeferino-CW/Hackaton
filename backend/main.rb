@@ -12,10 +12,14 @@ token = Auth.get_token(client_id, client_secret)
 # Criar o cliente da API
 api_client = ApiClient.new(token)
 
-# Fazer uma chamada de exemplo (substitua com seu endpoint e payload)
-response = api_client.make_post_request('cellphone-topups/transactions', { 
-    "product_id": "1",
-    "area_code": "11",
-    "cell_phone_number": "999990002" 
-    })
-puts response
+# Exemplo de chamada para realizar recarga de celular
+response = api_client.realizar_recarga('1', '11', '942005316', 10)
+puts "Recarga realizada: #{response}"
+
+# Exemplo de chamada para consultar operadoras
+response = api_client.consultar_operadoras
+puts "Operadoras disponíveis: #{response}"
+
+# Exemplo de chamada para consultar transações
+response = api_client.consultar_transacoes
+puts "Transações: #{response}"
