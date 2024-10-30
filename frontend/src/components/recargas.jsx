@@ -1,5 +1,6 @@
 import Image from "next/image";
 import recharges from "../services/getOptionsRecharge"
+import "../style/recargas.css";
 
 export default function Recarga () {
   return (

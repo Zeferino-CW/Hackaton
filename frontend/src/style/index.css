@@ -1,0 +1,31 @@
+#tittle-home {
+font-family: var(--FontFamilyHeading);
+font-size: 40px;
+font-weight: 700;
+line-height: 76.25px;
+text-align: center;
+color: #f5f5f5;
+  }
+  
+  /* Estilo para o parágrafo */
+  #paragrafo-home {
+font-family: Cera Pro;
+font-size: 18px;
+font-weight: 400;
+line-height: 21.92px;
+text-align: center;
+color: #c7c7c7;
+
+  }
+
+  body {
+    background-color: #121212;
+  }
+
+  #coin {
+    width: 30%; /* Defina o tamanho desejado, ajustável para pequeno a médio */
+    height: auto;
+    position: absolute;
+    top: -10px; /* Ajuste a posição vertical conforme necessário */
+    right: -10px; /* Posiciona a imagem à direita */
+  }
