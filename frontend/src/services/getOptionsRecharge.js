@@ -1,26 +1,26 @@
-import InfPayWhiteGrd from "../images/InfinitePayWhiteGround.png";
+// import InfPayWhiteGrd from "../images/InfinitePayWhiteGround.png";
 import ArrowRightIcon from "../images/icon-arrow-right.png";
 import InfPayTripleWhiteGrd from "../images/tripleInfinite.png";
 
 const recharges = [
     {
-        image: InfPayWhiteGrd,
-        title: "Telefonia e TV",
-        text: "Recargas de Celular, Telefone Fixo e TV",
+        image: InfPayTripleWhiteGrd,
+        title: "Telefonia",
+        text: "Recargas de celular, telefone fixo",
         buttonText: "Vender",
         arrowRightIcon: ArrowRightIcon
     },
     {
         image: InfPayTripleWhiteGrd,
-        title: "Games e Entretenimento",
-        text: "Games, Apps e Etc",
+        title: "Games, entretenimento e TV",
+        text: "Games, apps e etc",
         buttonText: "Vender",
         arrowRightIcon: ArrowRightIcon
     },
     {
         image: InfPayTripleWhiteGrd,
         title: "Vouchers e Vale Compras",
-        text: "Vouchers, Vale Compras Etc",
+        text: "Vouchers, vale compras etc",
         buttonText: "Vender",
         arrowRightIcon: ArrowRightIcon
     }
