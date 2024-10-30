@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: node:16-alpine
+    container_name: rps_front
+    working_dir: /app
+    volumes: 
+      - ./frontend:/app
+    stdin_open: true
+    tty: true
+    command: sh
+    ports: 
+      - 3005:3005
+    restart: on-failure
