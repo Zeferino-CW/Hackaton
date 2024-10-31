@@ -13,9 +13,10 @@ export default function Recarga () {
               <p>{text}</p>
               <button
                 type="button"
+                
               >
                 {buttonText}
-                <Image src={arrowRightIcon} />
+                <Image src={arrowRightIcon} alt="Ícone de seta" className="icon-arrow"  />
               </button>
 
             </div>
