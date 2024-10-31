@@ -1,3 +1,5 @@
+require 'sinatra'
+require 'json'
 require_relative 'config/dotenv'
 require_relative 'lib/auth'
 require_relative 'lib/api_client'
@@ -12,14 +14,29 @@ token = Auth.get_token(client_id, client_secret)
 # Criar o cliente da API
 api_client = ApiClient.new(token)
 
-# Exemplo de chamada para realizar recarga de celular
-response = api_client.realizar_recarga('1', '11', '942005316', 10)
-puts "Recarga realizada: #{response}"
+# Rota para realizar recarga de celular
+post '/recarga' do
+  data = JSON.parse(request.body.read)
+  product_id = data["product_id"]
+  area_code = data["area_code"]
+  cell_phone_number = data["cell_phone_number"]
+  amount = data["amount"]
 
-# Exemplo de chamada para consultar operadoras
-response = api_client.consultar_operadoras
-puts "Operadoras disponíveis: #{response}"
+  response = api_client.realizar_recarga(product_id, area_code, cell_phone_number, amount)
+  content_type :json
+  { data: response }.to_json
+end
 
-# Exemplo de chamada para consultar transações
-response = api_client.consultar_transacoes
-puts "Transações: #{response}"
+# Rota para consultar operadoras
+get '/operadoras' do
+  response = api_client.consultar_operadoras
+  content_type :json
+  { operadoras: response }.to_json
+end
+
+# Rota para consultar transações
+get '/transacoes' do
+  response = api_client.consultar_transacoes
+  content_type :json
+  { transacoes: response }.to_json
+end

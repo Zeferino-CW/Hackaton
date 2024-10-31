@@ -1,4 +1,4 @@
-# Usar a imagem oficial do Ruby
+# Usar a imagem oficial do Ruby 3.0.2
 FROM ruby:3.0.2
 
 # Definir o diretório de trabalho dentro do container
@@ -7,11 +7,11 @@ WORKDIR /app
 # Copiar os arquivos do projeto para o diretório de trabalho
 COPY . .
 
-# Instalar as dependências (dotenv no caso)
-RUN gem install bundler && gem install dotenv
+# Instalar as dependências necessárias
+RUN gem install bundler && gem install dotenv sinatra rackup pg
 
-# Expor a porta 3000 (caso você precise, ou remova se não usar)
-EXPOSE 3000
+# Expor a porta 4567, que é o padrão do Sinatra
+EXPOSE 4567
 
-# Rodar o arquivo main.rb
-CMD ["ruby", "main.rb"]
+# Rodar a aplicação com rackup
+CMD ["rackup", "--host", "0.0.0.0", "--port", "4567"]
