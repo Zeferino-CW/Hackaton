@@ -18,8 +18,8 @@ export default function Telefonia () {
           <label htmlFor="select-recarga-tipo">Tipos de recarga disponíveis</label>
           <select name="input-recarga-tipo" id="select-recarga-tipo">
             {
-              telefonia.rechargeType.map((type) => (
-                <option value={type}>{type}</option>
+              telefonia.rechargeType.map((type, ind) => (
+                <option value={type} key={ind}>{type}</option>
               ))
             }
           </select>
@@ -27,8 +27,8 @@ export default function Telefonia () {
           <label htmlFor="select-operadoras">Operadoras disponíveis</label>
           <select name="input-operadora" id="select-operadoras">
             {
-              telefonia.operadoras.map((type) => (
-                <option value={type}>{type}</option>
+              telefonia.operadoras.map((type, ind) => (
+                <option value={type} key={ind}>{type}</option>
               ))
             }
           </select>
@@ -36,8 +36,8 @@ export default function Telefonia () {
           <label htmlFor="select-operadoras">Operadoras disponíveis</label>
           <select name="input-operadora" id="select-operadoras">
             {
-              telefonia.rechargeValues.map((type) => (
-                <option value={type}>{type}</option>
+              telefonia.rechargeValues.map((type, ind) => (
+                <option value={type} key={ind}>{type}</option>
               ))
             }
           </select>
