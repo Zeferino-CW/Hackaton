@@ -1,0 +1,98 @@
+/* Centralizar a divMae-comp-recarga e adicionar espaço entre as div-comp-recarga */
+.divMae-comp-recarga {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza o contêiner no centro da tela */
+    gap: 1.5rem; /* Espaço entre cada item de recarga */
+    padding: 1rem;
+    margin: 0 auto;
+    max-width: 350px; /* Defina uma largura máxima para o contêiner */
+  }
+  
+  /* Estilo para cada item de recarga */
+  .div-comp-recarga {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinha todos os itens à esquerda */
+    border: 1px solid #b9b6b61a;
+    border-radius: 8px;
+    padding: 1rem;
+    width: 85%; /* Cada item de recarga ocupa a largura total do contêiner */
+    background-color: #202020;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 5%;
+    box-shadow: 2px 2px 5px rgba(173, 171, 171, 0.2); /* Define a sombra sutil */
+  }
+  
+  /* Estilo da imagem */
+  .div-comp-recarga img {
+    width: 60px;
+    height: 50px;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Estilo para o título */
+  .div-comp-recarga h3 {
+    font-size: 1.25rem;
+    color: #f5f5f5;
+    margin: 0.5rem 0;
+    font-weight: 700;
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+  }
+  
+  /* Estilo para o texto */
+  .div-comp-recarga p {
+    font-size: 1rem;
+    color: #c7c7c7;
+    text-align: left;
+    margin: 0.5rem 0;
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+  }
+  
+ /* Estilo para o botão */
+ .div-comp-recarga button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px; /* Espaço entre o texto e o ícone */
+  background-color: #323232;
+  color: #ffffff;
+  border: none;
+  border-radius: 50px; /* Deixa o botão mais arredondado */
+  padding: 0 8px; /* Ajuste do padding horizontal */
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+  font-size: 16px; /* Tamanho de fonte em px */
+  width: 143px; /* Largura fixa */
+  min-height: 44px; /* Altura mínima */
+  max-height: 24px; /* Altura máxima */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra leve */
+  opacity: 1; /* Opacidade total */
+  transition: opacity 0.3s ease, transform 0.2s ease; /* Transição para hover */
+}
+
+/* Efeito de hover */
+.div-comp-recarga button:hover {
+  opacity: 0.8; /* Leve transparência no hover */
+  transform: scale(1.05); /* Leve aumento no hover */
+}
+
+  
+/* Estilo para o ícone do botão */
+.icon-arrow {
+ margin-top: 7px;
+ left: 5px;
+  min-height: 34px; /* Altura mínima */
+  max-height: 24px; 
+  margin-left: 0.2rem; /* Espaçamento entre o texto e o ícone */
+  vertical-align: middle; /* Alinha verticalmente com o texto */
+  min-width: 30px; /* Altura mínima */
+  max-width: 14px;
+
+}
