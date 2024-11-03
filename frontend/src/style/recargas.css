@@ -37,7 +37,7 @@
     color: #f5f5f5;
     margin: 0.5rem 0;
     font-weight: 700;
-    font-family: "Roboto", sans-serif;
+    font-family: 'CeraPro', sans-serif;
     font-weight: 900;
     font-style: normal;
   }
@@ -48,7 +48,7 @@
     color: #c7c7c7;
     text-align: left;
     margin: 0.5rem 0;
-    font-family: "Roboto", sans-serif;
+    font-family: 'CeraPro', sans-serif;
     font-weight: 900;
     font-style: normal;
   }
@@ -65,7 +65,7 @@
   border-radius: 50px; /* Deixa o botão mais arredondado */
   padding: 0 8px; /* Ajuste do padding horizontal */
   cursor: pointer;
-  font-family: "Roboto", sans-serif;
+  font-family: 'CeraPro', sans-serif;
   font-weight: 900;
   font-style: normal;
   font-size: 16px; /* Tamanho de fonte em px */
