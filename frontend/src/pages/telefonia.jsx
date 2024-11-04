@@ -4,6 +4,7 @@ import InfPaySimpleSymbol from "../images/InfinitePayWhiteGround.png"
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import telefonia from "../services/getTelefonia";
+import "../style/telefonia.css";
 
 export default function Telefonia () {
   const router = useRouter();
@@ -42,6 +43,7 @@ export default function Telefonia () {
       cell_phone_number: telefone.slice(2).toString(),
       amount: recarga
     }
+    router.push('/telefonia/pagePayment');
   }
   useEffect(() => {
     validateButton();
@@ -50,7 +52,7 @@ export default function Telefonia () {
   return (
     <div id="telefonia">
       <div id="card">
-        <Image src={InfPaySimpleSymbol}/>
+        <Image src={InfPaySimpleSymbol} id="image-telefonia"/>
         <h2>Telefonia</h2>
         <p>Aqui você pode vender recargas de celular pré-pago e recargas de telefone fixo.</p>
       </div>

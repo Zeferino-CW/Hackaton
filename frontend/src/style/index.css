@@ -1,5 +1,5 @@
 #tittle-home {
-  font-family: "Roboto", sans-serif;
+  font-family: 'CeraPro', sans-serif;
   font-weight: 900;
   font-style: normal;
 font-size: 40px;
@@ -16,14 +16,14 @@ font-weight: 400;
 line-height: 21.92px;
 text-align: center;
 color: #c7c7c7;
-font-family: "Roboto", sans-serif;
+font-family: 'CeraPro', sans-serif;
     
     font-style: normal;
 
   }
 
   body {
-    /* background-color: #121212; */
+    
   }
 
   #coin {
@@ -39,6 +39,8 @@ font-family: "Roboto", sans-serif;
 .home-container {
   position: relative;
   overflow: hidden;
+  background-color: #121212; 
+  z-index: 0;
 }
 
 /* Container para os ícones de fundo */
@@ -192,4 +194,17 @@ font-family: "Roboto", sans-serif;
     font-style: italic;
   }
   
-  
+
+  @font-face {
+    font-family: 'CeraPro';
+    src: url('../app/fonts/cera-pro-download/CeraPro-Black.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+  font-family: 'CeraPro';
+  src: url('../app/fonts/cera-pro-download/CeraPro-Medium.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
