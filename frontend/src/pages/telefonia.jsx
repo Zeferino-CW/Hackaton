@@ -3,6 +3,7 @@ import InfPaySimpleSymbol from "../images/InfinitePayWhiteGround.png"
 // import {rechargeType, operadoras, rechargeValues} from "../services/getTelefonia";
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 import telefonia from "../services/getTelefonia";
 import "../style/telefonia.css";
 
@@ -35,16 +36,28 @@ export default function Telefonia () {
     }
   }
 
-  const makeRequest = () => {
-    const { operadorasId } = telefonia;
-    const bodyToRequest = {
-      product_id: operadorasId[operadora].toString(),
-      area_code: telefone.slice(0,2).toString(),
-      cell_phone_number: telefone.slice(2).toString(),
-      amount: recarga
+  const makeRequest = async () => {
+    try {
+      const { operadorasId } = telefonia;
+      const bodyToRequest = {
+        product_id: operadorasId[operadora].toString(),
+        area_code: telefone.slice(0, 2).toString(),
+        cell_phone_number: telefone.slice(2).toString(),
+        amount: recarga
+      };
+      const result = await axios.post('http://localhost:4567/recarga', bodyToRequest);
+  
+      if (result.status === 200) {
+        console.log(result.status);
+        router.push('/payment');
+      } else {
+        console.log(`Erro: ${result.status}`);
+      }
+    } catch (error) {
+      console.error("Erro na requisição:", error);
     }
-    router.push('/telefonia/pagePayment');
-  }
+  };
+  
   useEffect(() => {
     validateButton();
   }, [operadora, recarga, telefone])

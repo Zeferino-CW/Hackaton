@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . .
 
 # Instalar as dependências necessárias
-RUN gem install bundler && gem install dotenv sinatra rackup pg
+RUN gem install bundler && gem install dotenv sinatra rackup puma sinatra-cors pg
 
 # Expor a porta 4567, que é o padrão do Sinatra
 EXPOSE 4567
