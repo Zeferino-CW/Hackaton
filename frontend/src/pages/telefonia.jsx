@@ -43,7 +43,7 @@ export default function Telefonia () {
       cell_phone_number: telefone.slice(2).toString(),
       amount: recarga
     }
-    router.push('/telefonia/pagePayment');
+    router.push('/payment');
   }
   useEffect(() => {
     validateButton();
