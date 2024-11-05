@@ -69,6 +69,17 @@ get '/transacoes' do
   { transacoes: response }.to_json
 end
 
+# Rota para consultar uma transação específica pelo ID
+get '/transacoes/:id' do
+  transaction_id = params[:id]
+
+  # Consultar a transação na RVHub
+  response = api_client.consultar_transacao(transaction_id)
+
+  content_type :json
+  { transacao: response }.to_json
+end
+
 # Rota para consultar operadoras
 get '/operadoras' do
   response = api_client.consultar_operadoras
@@ -89,4 +100,25 @@ get '/operadoras/:provider/produtos' do
   
   content_type :json
   { produtos: response }.to_json
+end
+
+post '/pagamento/concluido' do
+  order_id = params["order_id"]
+  nsu = params["nsu"]
+  aut = params["aut"]
+  failure = params["failure"]
+
+  if failure
+    status 400
+    { error: "Pagamento falhou", order_id: order_id, failure_reason: failure }.to_json
+  else
+    # Confirmar a recarga na RVHub usando o order_id como transaction_id
+    response = api_client.confirmar_transacao(order_id)
+
+    # Salvar a resposta de confirmação no banco de dados
+    Database.save_response(response)
+
+    content_type :json
+    { message: "Recarga confirmada com sucesso", data: response }.to_json
+  end
 end
