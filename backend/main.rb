@@ -48,11 +48,18 @@ post '/recarga' do
   { message: "Recarga realizada com sucesso", data: response }.to_json
 end
 
-# Rota para consultar operadoras
-get '/operadoras' do
-  response = api_client.consultar_operadoras
+# Rota para confirmar uma transação
+post '/transacoes/:id/confirmar' do
+  transaction_id = params[:id]
+
+  # Confirmar a transação
+  response = api_client.confirmar_transacao(transaction_id)
+  
+  # Salvar a resposta no banco de dados
+  Database.save_response(response)
+
   content_type :json
-  { operadoras: response }.to_json
+  { message: "Transação confirmada com sucesso", data: response }.to_json
 end
 
 # Rota para consultar transações
@@ -60,4 +67,26 @@ get '/transacoes' do
   response = api_client.consultar_transacoes
   content_type :json
   { transacoes: response }.to_json
+end
+
+# Rota para consultar operadoras
+get '/operadoras' do
+  response = api_client.consultar_operadoras
+  content_type :json
+  { operadoras: response }.to_json
+end
+
+# Rota para consultar produtos de uma operadora específica
+get '/operadoras/:provider/produtos' do
+  provider = params[:provider]
+  kind = params[:kind] || 'cellphone'
+
+  # Montar a URL completa para o endpoint
+  endpoint = "portfolio?provider=#{provider}&kinds=#{kind}"
+
+  # Chamar o método do ApiClient com o endpoint completo
+  response = api_client.consultar_produtos(endpoint)
+  
+  content_type :json
+  { produtos: response }.to_json
 end

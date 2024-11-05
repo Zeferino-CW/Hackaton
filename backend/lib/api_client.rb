@@ -83,4 +83,8 @@ class ApiClient
   def consultar_operadoras
     make_get_request('portfolio/providers')
   end
+
+  def consultar_produtos(endpoint)
+    make_get_request(endpoint)
+  end
 end
