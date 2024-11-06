@@ -30,7 +30,7 @@ export default function RecargaConcluida() {
         <div id="btn-concluir">
           <button
             type="button"
-            className="button"
+            className="button-result"
             onClick={() => router.push('/')}
           >
             Nova Recarga

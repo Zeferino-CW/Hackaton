@@ -2,11 +2,14 @@
   font-family: 'CeraPro', sans-serif;
   font-weight: 900;
   font-style: normal;
-font-size: 40px;
-font-weight: 700;
-line-height: 76.25px;
-text-align: center;
-color: #f5f5f5;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 76.25px;
+  text-align: center;
+  /*color: #f5f5f5;*/
+  color: #161616;
+
+
   }
   
   /* Estilo para o parágrafo */
@@ -15,7 +18,7 @@ font-size: 16px;
 font-weight: 400;
 line-height: 21.92px;
 text-align: center;
-color: #c7c7c7;
+color: #302f2f;
 font-family: 'CeraPro', sans-serif;
     
     font-style: normal;
@@ -39,7 +42,8 @@ font-family: 'CeraPro', sans-serif;
 .home-container {
   position: relative;
   overflow: hidden;
-  background-color: #121212; 
+  background-color: #121212;
+  background-color: #f4f4f9;
   z-index: 0;
 }
 

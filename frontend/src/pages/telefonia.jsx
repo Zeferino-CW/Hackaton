@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import telefonia from "../services/getTelefonia";
+import Loading from "./loading";
 import "../style/telefonia.css";
 
 export default function Telefonia () {
@@ -13,6 +14,7 @@ export default function Telefonia () {
   const [recarga, setRecarga] = useState('');
   const [telefone, setTelefone] = useState('');
   const [isBtnRechargeBlock, setIsBtnRechargeBlock] = useState(true);
+  const [response, setResponse] = useState(false);
 
   const controlGeneralState = ({ target }) => {
     const { value, name } = target;
@@ -37,6 +39,7 @@ export default function Telefonia () {
   }
 
   const makeRequest = async () => {
+    setResponse(true);
     try {
       const { operadorasId } = telefonia;
       const bodyToRequest = {
@@ -48,7 +51,8 @@ export default function Telefonia () {
       const result = await axios.post('http://localhost:4567/recarga', bodyToRequest);
   
       if (result.status === 200) {
-        console.log(result.data);
+        setResponse(false)
+        console.log(result.data, "aqui");
         router.push(`/payment?valorPagamento=${recarga}&operadora=${operadora}&telefone=${telefone}&id=${result.data.data.id}`);
       } else {
         console.log(`Erro: ${result.status}`);
@@ -63,83 +67,86 @@ export default function Telefonia () {
   }, [operadora, recarga, telefone])
 
   return (
-    <div id="telefonia">
-      <div id="card">
-        <Image src={InfPaySimpleSymbol} id="image-telefonia"/>
-        <h2>Telefonia</h2>
-        <p>Aqui você pode vender recargas de celular pré-pago e recargas de telefone fixo.</p>
-      </div>
+    <div id="telefonia">{response ?
+      <Loading /> :
+      <div>      
+        <div id="card">
+          <Image src={InfPaySimpleSymbol} id="image-telefonia"/>
+          <h2>Telefonia</h2>
+          <p>Aqui você pode vender recargas de celular pré-pago e recargas de telefone fixo.</p>
+        </div>
 
-      <div id="form-recarga">
-        <h3>Recarga escolhida</h3>
-        <form action="">
-          {/* <label htmlFor="select-recarga-tipo">Tipos de recarga disponíveis</label>
-          <select name="input-recarga-tipo" id="select-recarga-tipo">
-            {
-              telefonia.rechargeType.map((type, ind) => (
-                <option value={type} key={ind}>{type}</option>
-              ))
-            }
-          </select> */}
+        <div id="form-recarga">
+          <h3>Recarga escolhida</h3>
+          <form action="">
+            {/* <label htmlFor="select-recarga-tipo">Tipos de recarga disponíveis</label>
+            <select name="input-recarga-tipo" id="select-recarga-tipo">
+              {
+                telefonia.rechargeType.map((type, ind) => (
+                  <option value={type} key={ind}>{type}</option>
+                ))
+              }
+            </select> */}
 
-          <label htmlFor="select-operadoras">Operadoras disponíveis</label>
-          <select 
-            name="input-operadora"
-            id="select-operadoras"
-            onChange={controlGeneralState}
-          >
-            {
-              telefonia.operadoras.map((type, ind) => (
-                <option value={type} key={ind}>{type}</option>
-              ))
-            }
-          </select>
-
-          <label htmlFor="select-valor-recarga">Recargas disponíveis</label>
-          <select
-            name="input-valor-recarga" 
-            id="select-valor-recarga"
-            onChange={controlGeneralState}
-          >
-            {
-              telefonia.rechargeValues.map((type, ind) => (
-                <option value={type} key={ind}>{type}</option>
-              ))
-            }
-          </select>
-
-          <label htmlFor="telefone">Número do celular/telefone:</label>
-            <input 
-              type="tel"
-              id="telefone"
-              name="telefone"
-              placeholder="(XX) XXXXX-XXXX"
-              pattern="\(\d{2}\) \d{4,5}-\d{4}"
+            <label htmlFor="select-operadoras">Operadoras disponíveis</label>
+            <select 
+              name="input-operadora"
+              id="select-operadoras"
               onChange={controlGeneralState}
-              maxLength={11}
-              required
-            />
+            >
+              {
+                telefonia.operadoras.map((type, ind) => (
+                  <option value={type} key={ind}>{type}</option>
+                ))
+              }
+            </select>
 
-            <div id="button">
-              <button
-                type="button"
-                className="back-button"
-                onClick={() => router.push('/')}
-              >
-                Voltar ao início
-              </button>
+            <label htmlFor="select-valor-recarga">Recargas disponíveis</label>
+            <select
+              name="input-valor-recarga" 
+              id="select-valor-recarga"
+              onChange={controlGeneralState}
+            >
+              {
+                telefonia.rechargeValues.map((type, ind) => (
+                  <option value={type} key={ind}>{type}</option>
+                ))
+              }
+            </select>
 
-              <button
-                type="button"
-                className="recharge-button"
-                disabled={isBtnRechargeBlock}
-                onClick={makeRequest}
-              >
-                Fazer recarga
-              </button>
-            </div>
-        </form>
+            <label htmlFor="telefone">Número do celular/telefone:</label>
+              <input 
+                type="tel"
+                id="telefone"
+                name="telefone"
+                placeholder="(XX) XXXXX-XXXX"
+                pattern="\(\d{2}\) \d{4,5}-\d{4}"
+                onChange={controlGeneralState}
+                maxLength={11}
+                required
+              />
+
+              <div id="button">
+                <button
+                  type="button"
+                  className="back-button"
+                  onClick={() => router.push('/')}
+                >
+                  Voltar ao início
+                </button>
+
+                <button
+                  type="button"
+                  className="recharge-button"
+                  disabled={isBtnRechargeBlock}
+                  onClick={makeRequest}
+                >
+                  Fazer recarga
+                </button>
+              </div>
+          </form>
+        </div>
       </div>
-    </div>
+}</div>
   )
 }

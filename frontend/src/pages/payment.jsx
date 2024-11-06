@@ -4,6 +4,8 @@ import { useState } from "react";
 import iconInfPay from "../images/InfinitePayWhiteGround.png";
 import Image from "next/image";
 import telefonia from "../services/getTelefonia";
+import Loading from "./loading";
+import "../style/telefonia.css";
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import "../style/payment.css";
@@ -15,6 +17,7 @@ export default function Payment() {
   const [selectedCard, setSelectedCard] = useState(null);
   const [selectedType, setSelectedType] = useState(null); // Armazena o tipo selecionado
   const [parcelas, setParcelas] = useState(1); // Armazena o número de parcelas
+  const [response, setResponse] = useState(false);
 
     // Função para selecionar o tipo de pagamento
     const handleCardClick = (type, index) => {
@@ -23,9 +26,11 @@ export default function Payment() {
     };
 
     const makeRequest = async () => {
+      setResponse(true);
       try {
         const result = await axios.post(`http://localhost:4567/transacoes/${id}/confirmar`);
         if (result.status === 200) {
+          setResponse(false);
           console.log(result.data);
           router.push(`/result?valorPagamento=${valorPagamento}&telefone=${telefone}&id=${result.data.data.id}`);
         } else {
@@ -37,7 +42,10 @@ export default function Payment() {
     };
 
   return (
-    <div id="mom-payment">
+    <div id="mom-payment">{ response ? 
+      <Loading /> :
+      
+    <div>
       <section id="description">
         <Image src={iconInfPay} alt="ícone InfinitePay" id="icon-image" />
         <h3>Como quer receber?</h3>
@@ -100,5 +108,7 @@ export default function Payment() {
         </div>
       </section>
     </div>
+  }
+  </div>
   );
 }
