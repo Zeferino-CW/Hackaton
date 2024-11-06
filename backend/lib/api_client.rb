@@ -7,6 +7,13 @@ class ApiClient
     @token = token
   end
 
+  # Método para renovar o token usando Auth
+  def renew_token
+    client_id = ENV['CLIENT_ID']
+    client_secret = ENV['CLIENT_SECRET']
+    @token = Auth.get_token(client_id, client_secret)
+  end
+
   def make_post_request(endpoint, payload)
     url = URI("https://api.sbx.rvhub.com.br/#{endpoint}")
     https = Net::HTTP.new(url.host, url.port)
@@ -19,7 +26,18 @@ class ApiClient
     request.body = payload.to_json
 
     response = https.request(request)
-    JSON.parse(response.read_body)
+    result = JSON.parse(response.read_body)
+
+    # Verifica se o token expirou e renova se necessário
+    if result["message"] == "The incoming token has expired"
+      renew_token
+      # Refaz a requisição com o novo token
+      request["Authorization"] = "Bearer #{@token}"
+      response = https.request(request)
+      result = JSON.parse(response.read_body)
+    end
+
+    result
   end
 
   def make_get_request(endpoint)
@@ -32,7 +50,18 @@ class ApiClient
     request["Content-Type"] = "application/json"
 
     response = https.request(request)
-    JSON.parse(response.read_body)
+    result = JSON.parse(response.read_body)
+
+    # Verifica se o token expirou e renova se necessário
+    if result["message"] == "The incoming token has expired"
+      renew_token
+      # Refaz a requisição com o novo token
+      request["Authorization"] = "Bearer #{@token}"
+      response = https.request(request)
+      result = JSON.parse(response.read_body)
+    end
+
+    result
   end
 
   def make_delete_request(endpoint)
@@ -45,7 +74,18 @@ class ApiClient
     request["Content-Type"] = "application/json"
 
     response = https.request(request)
-    JSON.parse(response.read_body)
+    result = JSON.parse(response.read_body)
+
+    # Verifica se o token expirou e renova se necessário
+    if result["message"] == "The incoming token has expired"
+      renew_token
+      # Refaz a requisição com o novo token
+      request["Authorization"] = "Bearer #{@token}"
+      response = https.request(request)
+      result = JSON.parse(response.read_body)
+    end
+
+    result
   end
 
   # Função para realizar uma recarga de celular

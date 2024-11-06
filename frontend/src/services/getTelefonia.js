@@ -7,7 +7,7 @@ const rechargeType = [" ", "Telefonia"];
 
 const operadoras = [" ", "Claro", "Oi", "Tim", "Vivo"]; // colocar as operadoras com product_id
 
-const operadorasId = {Claro: 1, Oi: 2, Tim: 3, Vivo: 4};
+const operadorasId = {Claro: 1, Oi: 2, Tim: 3, Vivo: 100007};
 
 const rechargeValues = [" ", "10", "15", "20", "25", "50"];
 

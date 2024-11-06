@@ -48,8 +48,8 @@ export default function Telefonia () {
       const result = await axios.post('http://localhost:4567/recarga', bodyToRequest);
   
       if (result.status === 200) {
-        console.log(result.status);
-        router.push('/payment');
+        console.log(result.data);
+        router.push(`/payment?valorPagamento=${recarga}&operadora=${operadora}&telefone=${telefone}&id=${result.data.data.id}`);
       } else {
         console.log(`Erro: ${result.status}`);
       }
@@ -120,22 +120,24 @@ export default function Telefonia () {
               required
             />
 
-          <div id="button">
-            <button
-              type="button"
-              onClick={ () => router.push('/')}
-            >
-              Voltar ao início
-            </button>
+            <div id="button">
+              <button
+                type="button"
+                className="back-button"
+                onClick={() => router.push('/')}
+              >
+                Voltar ao início
+              </button>
 
-            <button
-              type="button"
-              disabled={isBtnRechargeBlock}
-              onClick={ makeRequest }
-            >
-              Fazer recarga
-            </button>
-          </div>
+              <button
+                type="button"
+                className="recharge-button"
+                disabled={isBtnRechargeBlock}
+                onClick={makeRequest}
+              >
+                Fazer recarga
+              </button>
+            </div>
         </form>
       </div>
     </div>
