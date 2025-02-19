@@ -1,4 +1,4 @@
-# Hackathon Cloudwalk - (nome do nosso grupo)
+# Hackathon Cloudwalk
 
 Este projeto foi desenvolvido durante o Hackathon do time de CSE da Cloudwalk.
 
